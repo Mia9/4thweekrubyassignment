@@ -13,12 +13,14 @@ end
 
 math = [
   Quiz.new("What is 1 + 1?\n(a) 3\n(b) 2\n(c) 10", "b"),
-  Quiz.new("What is 2 x 3?\n(a) 23\n(b) 5\n(c) 6", "c")
+  Quiz.new("What is 2 x 3?\n(a) 23\n(b) 5\n(c) 6", "c"),
+  Quiz.new("What is 4 / 2?\n(a) 2\n(b) 6\n(c) 8", "a")
 ]
 
 science = [
   Quiz.new("What is the color of the ocean?\n(a) yellow\n(b) blue\n(c) black", "b"),
-  Quiz.new("What is the color of an apple?\n(a) red\n(b) blue\n(c) yellow", "a")
+  Quiz.new("What is the color of an apple?\n(a) red\n(b) blue\n(c) yellow", "a"),
+  Quiz.new("Which state of matter is water?\n(a) gas\n(b) liquid\n(c) solid", "b")
 ]
 
 topics = {
@@ -35,10 +37,10 @@ def choose_topic(topics)
   run_quiz(selected_questions) # another method inside
 end
 
-def run_quiz(questions)
+def run_quiz(questions) #placeholder for science and math array
   score = 0
 
-   for item in questions
+   for item in questions #placeholder here
     puts item.question
     answer = gets.chomp.downcase
 
