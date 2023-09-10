@@ -1,5 +1,6 @@
 # 4th week assignment
 # Create an interactive quiz game in Ruby that allows users to play quizzes on various topics. The game should provide multiple-choice questions, keep score, and display results at the end of each quiz.
+require 'csv'
 
 class Quiz
   attr_accessor :question, :answer
@@ -11,17 +12,30 @@ class Quiz
   end
 end
 
-math = [
-  Quiz.new("What is 1 + 1?\n(a) 3\n(b) 2\n(c) 10", "b"),
-  Quiz.new("What is 2 x 3?\n(a) 23\n(b) 5\n(c) 6", "c"),
-  Quiz.new("What is 4 / 2?\n(a) 2\n(b) 6\n(c) 8", "a")
-]
+def load_questions_from_csv(file_name)
+  math = []
 
-science = [
-  Quiz.new("What is the color of the ocean?\n(a) yellow\n(b) blue\n(c) black", "b"),
-  Quiz.new("What is the color of an apple?\n(a) red\n(b) blue\n(c) yellow", "a"),
-  Quiz.new("Which state of matter is water?\n(a) gas\n(b) liquid\n(c) solid", "b")
-]
+  CSV.foreach(file_name, headers: true) do |row|
+    question = row['question']
+    answer = row['answer']
+    math << Quiz.new(question, answer)
+   end
+  math
+end
+
+math = load_questions_from_csv('math.csv')
+#----in excel csv, ALT+ENTER for next line in one cell
+# math = [
+#   Quiz.new("What is 1 + 1?\n(a) 3\n(b) 2\n(c) 10", "b"),
+#   Quiz.new("What is 2 x 3?\n(a) 23\n(b) 5\n(c) 6", "c"),
+#   Quiz.new("What is 4 / 2?\n(a) 2\n(b) 6\n(c) 8", "a")
+# ]
+science = load_questions_from_csv('science.csv')
+# science = [
+#   Quiz.new("What is the color of the ocean?\n(a) yellow\n(b) blue\n(c) black", "b"),
+#   Quiz.new("What is the color of an apple?\n(a) red\n(b) blue\n(c) yellow", "a"),
+#   Quiz.new("Which state of matter is water?\n(a) gas\n(b) liquid\n(c) solid", "b")
+# ]
 
 topics = {
   "Math" => math,
